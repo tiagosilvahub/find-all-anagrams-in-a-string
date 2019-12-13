@@ -34,50 +34,50 @@ The substring with start index = 1 is "ba", which is an anagram of "ab".
 The substring with start index = 2 is "ab", which is an anagram of "ab".
 
 ```
-  public static List<Integer> findAnagrams(String s, String p) {
-    List<Integer> indexes = new LinkedList<>();
-    int[] charCounts = new int[256];
-    char[] sChars = s.toCharArray();
-    char[] pChars = p.toCharArray();
+List<Integer> findAnagrams(String s, String p) {
+  List<Integer> indexes = new LinkedList<>();
+  int[] charCounts = new int[256];
+  char[] sChars = s.toCharArray();
+  char[] pChars = p.toCharArray();
 
-    int left = 0;
-    int right = 0;
-    int uniqueCharCount = 0;
+  int left = 0;
+  int right = 0;
+  int uniqueCharCount = 0;
 
-    if(pChars.length < 1 || pChars.length > sChars.length){
-      return indexes;
-    }
-
-    for (int i = 0; i < charCounts.length; i++) {
-      charCounts[i] = 0;
-    }
-
-    for( char c : pChars) {
-      if(charCounts[c] == 0){
-        uniqueCharCount++;
-      }
-      charCounts[c]++;
-    }
-
-    while(right < s.length()) {
-      char rightChar = sChars[right];
-      charCounts[rightChar]--;
-      if (charCounts[rightChar] == 0) {
-        uniqueCharCount--;
-      }
-      while(uniqueCharCount == 0){
-        char leftChar = sChars[left];
-        if( right-left == pChars.length -1 ){
-          indexes.add(left);
-        }
-        charCounts[leftChar]++;
-        if( charCounts[leftChar] > 0 ){
-          uniqueCharCount++;
-        }
-        left++;
-      }
-      right++;
-    }
+  if(pChars.length < 1 || pChars.length > sChars.length){
     return indexes;
   }
+
+  for (int i = 0; i < charCounts.length; i++) {
+    charCounts[i] = 0;
+  }
+
+  for( char c : pChars) {
+    if(charCounts[c] == 0){
+      uniqueCharCount++;
+    }
+    charCounts[c]++;
+  }
+
+  while(right < s.length()) {
+    char rightChar = sChars[right];
+    charCounts[rightChar]--;
+    if (charCounts[rightChar] == 0) {
+      uniqueCharCount--;
+    }
+    while(uniqueCharCount == 0){
+      char leftChar = sChars[left];
+      if( right-left == pChars.length -1 ){
+        indexes.add(left);
+      }
+      charCounts[leftChar]++;
+      if( charCounts[leftChar] > 0 ){
+        uniqueCharCount++;
+      }
+      left++;
+    }
+    right++;
+  }
+  return indexes;
+}
 ```
