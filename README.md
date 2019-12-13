@@ -33,6 +33,11 @@ The substring with start index = 0 is "ab", which is an anagram of "ab".
 The substring with start index = 1 is "ba", which is an anagram of "ab".
 The substring with start index = 2 is "ab", which is an anagram of "ab".
 
+Solution O(n):
+
+Sliding window technique. First count the frequency of each character using an vector (or HashMap). Keep track of the number of unique characters inside the window as we move the left and right pointers across the original string. We know we have an anagram when the frequency of each character is the same in the given string and in the substring we found.
+
+
 ```
 public List<Integer> findAnagrams(String s, String p) {
   List<Integer> indexes = new LinkedList<>();
